@@ -13,16 +13,20 @@ code {
     monospace;
 }
 
-.app-wrapper {
+.gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 3rem;
 }
 
-.item-wrapper {
+.summary {
   border: 1px solid;
   text-align: center;
   padding: 10px;
+}
+
+.price {
+  padding: 10px; 
 }
 
 .buy-btn {

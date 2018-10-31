@@ -1,5 +1,9 @@
 import React from "react";
 
+const handleClick = () => {
+  console.log("click perfil/login");
+};
+
 const Login = () => (
   <svg
     width="30"
@@ -7,6 +11,7 @@ const Login = () => (
     viewBox="0 0 44 44"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    onClick={handleClick}
   >
     <path
       d="M13.3333 6.66667C13.3333 10.3486 10.3486 13.3333 6.66667 13.3333C2.98477 13.3333 0 10.3486 0 6.66667C0 2.98477 2.98477 0 6.66667 0C10.3486 0 13.3333 2.98477 13.3333 6.66667Z"

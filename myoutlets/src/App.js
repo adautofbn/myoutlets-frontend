@@ -2,12 +2,15 @@ import React, { Component, Fragment } from "react";
 
 import Login from "./Login";
 import Minicart from "./Minicart";
+import products from "./data.json";
 import Gallery from "./components/Gallery";
-import mockData from "./data.json";
+
+let filteredProducts = products;
 
 class App extends Component {
-  handleChange = e => {
-    // TODO: implementar pesquisa
+
+  handleChange = event => {
+    console.log(event.target.value);
   };
 
   render() {
@@ -29,7 +32,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <Gallery products={mockData} />
+        <Gallery products={filteredProducts} />
       </Fragment>
     );
   }

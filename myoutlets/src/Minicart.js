@@ -1,5 +1,9 @@
 import React from "react";
 
+const handleClick = () => {
+  console.log("click carrinho");
+};
+
 const Minicart = () => (
   <svg
     width="30"
@@ -7,6 +11,7 @@ const Minicart = () => (
     viewBox="0 0 44 44"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    onClick={handleClick}
   >
     <path
       d="M0 0H8L10.6667 24H34.6667L40 8H16"

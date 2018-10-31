@@ -1,11 +1,27 @@
 import React, { Component } from "react";
-import ProductSummary from "./ProductSummary";
+import ProductName from "./ProductName";
+import ProductPrice from "./ProductPrice";
+import BuyButton from "./BuyButton";
 
-class Gallery extends Component {
+export default class ProductSummary extends Component {
   render() {
-    // TODO: implement this component
-    return <ProductSummary products={this.props.products} />;
+    return (
+      <div className="gallery">
+        {this.props.products.map(product => {
+          return (
+            <article key={product.id} className="summary">
+              <>
+                <img src={product.img} alt={product.description}/>
+                <ProductName names={product.name} />
+                <ProductPrice
+                  prices={product.price}
+                />
+                <BuyButton />
+              </>
+            </article>
+          );
+        })}
+      </div>
+    );
   }
 }
-
-export default Gallery;

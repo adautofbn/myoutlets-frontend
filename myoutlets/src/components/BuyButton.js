@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 
-export default class BuyButton extends Component {
+class BuyButton extends Component {
+  
+  handleClick() {
+    console.log("click comprar");
+  }
+
   render() {
-    // TODO: implement this component
-    return <button className="buy-btn">Comprar</button>;
+    return <button className="buy-btn" onClick={this.handleClick}>Comprar</button>;
   }
 }
+
+export default BuyButton;
