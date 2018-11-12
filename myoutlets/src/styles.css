@@ -28,10 +28,3 @@ code {
 .price {
   padding: 10px; 
 }
-
-.buy-btn {
-  background: blue;
-  color: white;
-  width: 100%;
-  height: 3rem;
-}

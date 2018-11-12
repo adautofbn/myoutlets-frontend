@@ -13,10 +13,8 @@ export default class ProductSummary extends Component {
               <>
                 <img src={product.img} alt={product.description}/>
                 <ProductName names={product.name} />
-                <ProductPrice
-                  prices={product.price}
-                />
-                <BuyButton />
+                <ProductPrice prices={product.price}/>
+                <BuyButton></BuyButton>
               </>
             </article>
           );

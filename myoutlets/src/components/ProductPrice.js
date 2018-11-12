@@ -4,9 +4,7 @@ export default class ProductPrice extends Component {
   render() {
     if (this.props.prices === 0) {
       return (
-        <div className="price">
-          <>Indisponível</>
-        </div>
+        <div className="price">Indisponível</div>
       );
     }
     return (
