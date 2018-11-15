@@ -9,7 +9,7 @@ const BuyButton = () => (
   <div>
     <Button 
       fluid 
-      color='blue' 
+      color='orange' 
       animated='vertical'
       onClick={handleClick}>
       <Button.Content hidden>Adicionar ao carrinho</Button.Content>

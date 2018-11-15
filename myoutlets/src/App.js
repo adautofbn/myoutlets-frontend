@@ -5,6 +5,7 @@ import Minicart from "./components/Minicart";
 import mockProducts from "./data.json";
 import Gallery from "./components/Gallery";
 import SearchBar from "./components/SearchBar";
+import Logo from "./components/Logo";
 
 class App extends Component {
 
@@ -17,7 +18,7 @@ class App extends Component {
   }
 
   handleChange = event => {
-    const input = event.target.value;
+    const input = event.target.value.toLowerCase();
     this.setState(currentState => {
       return { products: mockProducts.filter(product => product.name.includes(input)) }
     });
@@ -27,8 +28,8 @@ class App extends Component {
     return (
       <Fragment>
         <div className="flex flex-wrap-s flex-nowrap-ns justify-around items-center ph5-ns ph3-s pv8-ns pv3-s bb b--muted-4 mb4">
+          <Logo />
           <SearchBar handleChange={this.handleChange} />
-
           <div className="c-muted-2 order-1-s order-2-ns ml-auto ml0-m mv3-s mv0-ns">
             <div className="mh5 dib pointer">
               <Login />
