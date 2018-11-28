@@ -1,26 +1,36 @@
 import React, { Component, Fragment } from "react";
-
 import Login from "./components/Login";
 import Minicart from "./components/Minicart";
-import mockProducts from "./data.json";
 import Gallery from "./components/Gallery";
 import SearchBar from "./components/SearchBar";
 import Logo from "./components/Logo";
+import axios from 'axios';
+
+let originalProducts = [];
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      products: [...mockProducts]
+      products: [...originalProducts]
     }
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount () {
+    axios.get('http://localhost:3000/produto')
+    .then(res => {
+      originalProducts = res.data;
+      const products = originalProducts;
+      this.setState({products})
+    })
   }
 
   handleChange = event => {
     const input = event.target.value.toLowerCase();
     this.setState(currentState => {
-      return { products: mockProducts.filter(product => product.name.includes(input)) }
+      return { products: originalProducts.filter(product => product.name.includes(input)) }
     });
   };
 
