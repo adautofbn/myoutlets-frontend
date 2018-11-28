@@ -27,6 +27,11 @@ class App extends Component {
       const products = originalProducts;
       this.setState({products})
     });
+
+    axios.get('http://localhost:3000/login/check')
+    .then(res => {
+      console.log(res.data);
+    })
   };
 
   handleChange = event => {

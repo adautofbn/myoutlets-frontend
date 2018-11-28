@@ -44,7 +44,7 @@ class ProductForm extends Component {
             description: this.state.description
         };
 
-        axios.post("http://localhost:3000/produto/", { product });
+        axios.post("http://localhost:3000/produto/", product);
         this.props.close();
         window.location.reload();
     }

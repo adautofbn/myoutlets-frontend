@@ -1,5 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
 import { Dropdown } from "semantic-ui-react";
+import Axios from "axios";
 
 const trigger = (
   <svg
@@ -37,12 +38,38 @@ const trigger = (
 );
 
 const options = [
-  { key: 'sign-up', text: 'Cadastrar', icon: 'add user', value: 'logout' },
+  { key: 'sign-up', text: 'Cadastrar', icon: 'add user', value: 'signup' },
   { key: 'sign-in', text: 'Entrar', icon: 'sign in', value: 'login' },
 ]
 
-const Login = () => (
-  <Dropdown trigger={trigger} options={options} icon={null} />
-)
+export default class Login extends Component {
 
-export default Login;
+  state = {}
+
+  handleChange = (e, {value}) => {
+    this.setState({value});
+    if(this.state.value === 'login') {
+      const user = {
+        email: 'alex@cc.ee',
+        password: 'alex123' 
+      }
+
+      Axios.post('http://localhost:3000/login', user)
+      window.location.reload();
+    }
+  }
+
+  render() {
+    const {value} = this.state
+
+    return (
+      <Dropdown 
+      trigger={trigger} 
+      options={options} 
+      icon={null} 
+      onChange={this.handleChange} 
+      value={value}/>
+    )
+  }
+
+}
