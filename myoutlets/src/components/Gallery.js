@@ -6,7 +6,7 @@ const Gallery = props => (
   <Card.Group centered>
     {props.products.map(product => {
       return (
-        <ProductSummary product={product} />
+        <ProductSummary key={product.id} product={product} />
       )
     })}
   </Card.Group>

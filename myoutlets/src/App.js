@@ -4,7 +4,9 @@ import Minicart from "./components/Minicart";
 import Gallery from "./components/Gallery";
 import SearchBar from "./components/SearchBar";
 import Logo from "./components/Logo";
+import AddProduct from "./components/AddProduct";
 import axios from 'axios';
+
 
 let originalProducts = [];
 
@@ -14,9 +16,9 @@ class App extends Component {
     super(props);
     this.state = {
       products: [...originalProducts]
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
-  }
+  };
 
   componentDidMount () {
     axios.get('http://localhost:3000/produto')
@@ -24,8 +26,8 @@ class App extends Component {
       originalProducts = res.data;
       const products = originalProducts;
       this.setState({products})
-    })
-  }
+    });
+  };
 
   handleChange = event => {
     const input = event.target.value.toLowerCase();
@@ -40,6 +42,7 @@ class App extends Component {
         <div className="flex flex-wrap-s flex-nowrap-ns justify-around items-center ph5-ns ph3-s pv8-ns pv3-s bb b--muted-4 mb4">
           <Logo />
           <SearchBar handleChange={this.handleChange} />
+          <AddProduct></AddProduct>
           <div className="c-muted-2 order-1-s order-2-ns ml-auto ml0-m mv3-s mv0-ns">
             <div className="mh5 dib pointer">
               <Login />
@@ -52,7 +55,7 @@ class App extends Component {
         <Gallery products={this.state.products} />
       </Fragment>
     );
-  }
-}
+  };
+};
 
 export default App;

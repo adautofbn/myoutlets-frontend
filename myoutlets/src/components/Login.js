@@ -37,8 +37,8 @@ const trigger = (
 );
 
 const options = [
-  { key: 'sign-up', text: 'Cadastrar', icon: 'add user ' },
-  { key: 'sign-in', text: 'Entrar', icon: 'sign in' },
+  { key: 'sign-up', text: 'Cadastrar', icon: 'add user', value: 'logout' },
+  { key: 'sign-in', text: 'Entrar', icon: 'sign in', value: 'login' },
 ]
 
 const Login = () => (
