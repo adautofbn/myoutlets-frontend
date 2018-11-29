@@ -1,16 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
+import { Card } from "semantic-ui-react";
 
-export default class ProductPrice extends Component {
-  render() {
-    if (this.props.prices === 0) {
-      return (
-        <div className="price">Indisponível</div>
-      );
-    }
+const checkPrice = price => {
+  if (price === 0) {
     return (
-      <div className="price">
-        Por R$<>{this.props.prices}</>
-      </div>
+      <>Indisponível</>
     );
   }
+  return (
+    <>R$ {price}</>
+  );
 }
+
+const ProductPrice = ({ price }) => (
+  <Card.Description>{checkPrice(price)}</Card.Description>
+)
+
+export default ProductPrice;

@@ -1,25 +1,15 @@
-import React, { Component } from "react";
-import ProductName from "./ProductName";
-import ProductPrice from "./ProductPrice";
-import BuyButton from "./BuyButton";
+import React from "react";
+import { Card } from "semantic-ui-react";
+import ProductSummary from "./ProductSummary";
 
-export default class ProductSummary extends Component {
-  render() {
-    return (
-      <div className="gallery">
-        {this.props.products.map(product => {
-          return (
-            <article key={product.id} className="summary">
-              <>
-                <img src={product.img} alt={product.description}/>
-                <ProductName names={product.name} />
-                <ProductPrice prices={product.price}/>
-                <BuyButton></BuyButton>
-              </>
-            </article>
-          );
-        })}
-      </div>
-    );
-  }
-}
+const Gallery = props => (
+  <Card.Group centered>
+    {props.products.map(product => {
+      return (
+        <ProductSummary key={product.id} product={product} />
+      )
+    })}
+  </Card.Group>
+)
+
+export default Gallery;

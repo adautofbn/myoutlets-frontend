@@ -1,28 +1,48 @@
 import React, { Component, Fragment } from "react";
-
-import Login from "./Login";
-import Minicart from "./Minicart";
-import products from "./data.json";
+import Login from "./components/Login";
+import Minicart from "./components/Minicart";
 import Gallery from "./components/Gallery";
+import SearchBar from "./components/SearchBar";
+import Logo from "./components/Logo";
+import AddProduct from "./components/AddProduct";
+import axios from 'axios';
 
-let filteredProducts = products;
+
+let originalProducts = [];
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [...originalProducts]
+    };
+    this.handleChange = this.handleChange.bind(this);
+  };
+
+  componentDidMount () {
+    axios.get('http://localhost:3000/produto')
+    .then(res => {
+      originalProducts = res.data;
+      const products = originalProducts;
+      this.setState({products})
+    });
+  };
+
   handleChange = event => {
-    console.log(event.target.value);
+    const input = event.target.value.toLowerCase();
+    this.setState(currentState => {
+      return { products: originalProducts.filter(product => product.name.includes(input)) }
+    });
   };
 
   render() {
     return (
       <Fragment>
         <div className="flex flex-wrap-s flex-nowrap-ns justify-around items-center ph5-ns ph3-s pv8-ns pv3-s bb b--muted-4 mb4">
-          <input
-            className="ba b--muted-4 bw1 br5 pv4 ph6 f5 c-on-base bg-base order-2-s order-1-ns w-100-s w5-ns"
-            placeholder="Buscar"
-            onChange={this.handleChange}
-          />
-
+          <Logo />
+          <SearchBar handleChange={this.handleChange} />
+          <AddProduct></AddProduct>
           <div className="c-muted-2 order-1-s order-2-ns ml-auto ml0-m mv3-s mv0-ns">
             <div className="mh5 dib pointer">
               <Login />
@@ -32,10 +52,10 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <Gallery products={filteredProducts} />
+        <Gallery products={this.state.products} />
       </Fragment>
     );
-  }
-}
+  };
+};
 
 export default App;
