@@ -18,5 +18,4 @@ Um ambiente web centralizado no comércio de roupas (camisas,calças,sapatos,etc
 
 Para instalação é necessário ter o backend rodando localmente em sua máquina que está disponibilizado em https://github.com/adautofbn/pdw-backend com devido guia para instalação.
 
-Feito isso, faça clone deste repositório e com um terminal aberto dentro da pasta "myoutlets" execute o seguintes comando:
-  npm install && npm start
+Feito isso, faça clone deste repositório e com um terminal aberto dentro da pasta "myoutlets" execute o seguinte comando: npm install && npm start
