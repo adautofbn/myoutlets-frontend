@@ -14,6 +14,10 @@ Devido a proposta de criação de um projeto web que tivesse aplicação no mund
 
 Um ambiente web centralizado no comércio de roupas (camisas,calças,sapatos,etc.) disponível para vários vendedores e clientes fazendo o intermédio entre eles, simplificando assim o comércio.
 
-# Como usar?
+# Instalação
 
-Basta fazer seu cadastro na plataforma como vendedor ou cliente e a plataforma se adequará às suas necessidades, disponibilizando meios de cadastramento ou compra de produtos.
+Para instalação é necessário ter o backend rodando localmente em sua máquina que está disponibilizado em https://github.com/adautofbn/pdw-backend com devido guia para instalação.
+
+Feito isso, faça clone deste repositório e com um terminal aberto dentro da pasta "myoutlets" execute os seguintes comandos:
+  npm install
+  npm start
