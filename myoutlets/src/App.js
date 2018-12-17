@@ -21,14 +21,14 @@ class App extends Component {
   };
 
   componentDidMount () {
-    axios.get('http://localhost:3000/produto')
+    axios.get('http://localhost:8080/produto')
     .then(res => {
       originalProducts = res.data;
       const products = originalProducts;
       this.setState({products})
     });
 
-    axios.get('http://localhost:3000/login/check')
+    axios.get('http://localhost:8080/login/check')
     .then(res => {
       console.log(res.data);
     })
