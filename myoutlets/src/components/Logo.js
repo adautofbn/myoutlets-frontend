@@ -1,7 +1,11 @@
 import React from 'react';
 
+const handleClick = () => {
+    window.location.reload();
+}
+
 const Logo = () => (
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 483.64 56.09" width="400px" height="50px">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 483.64 56.09" width="400px" height="50px" onClick={handleClick}>
     <g id="Camada_2" data-name="Camada 2">
         <g id="Camada_1-2" data-name="Camada 1">
             <path d="M62.68,25.6c3.2-5,6.3-9,8.47-13.47,2.61-5.36,6.2-7.57,12.42-5.53V54.76a32,32,0,0,1-8.91,0V26l-1-.44c-2.2,3-4.35,6.09-6.61,9.07-3.08,4.06-5.77,4-8.75-.11-2.2-3-4.37-6.08-7.29-10.14V36.15H41.88V6.49c5.69-1.69,9.57-.33,12.21,5.31C56.21,16.32,59.36,20.36,62.68,25.6Z"

@@ -1,46 +1,78 @@
-import React from "react";
+import React, { Component } from 'react'
+import { Button, Modal, Icon, Item } from 'semantic-ui-react'
+import Axios from 'axios'
+import _ from 'lodash'
+import ProductDescription from './ProductDescription';
 
-const handleClick = () => {
-  console.log("click carrinho");
-};
+class ModalExampleDimmer extends Component {
 
-const Minicart = () => (
-  <svg
-    width="30"
-    height="30"
-    viewBox="0 0 44 44"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    onClick={handleClick}
-  >
-    <path
-      d="M0 0H8L10.6667 24H34.6667L40 8H16"
-      transform="translate(2 2)"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M8 4C8 6.20914 6.20914 8 4 8C1.79086 8 0 6.20914 0 4C0 1.79086 1.79086 0 4 0C6.20914 0 8 1.79086 8 4Z"
-      transform="translate(10 34)"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M8 4C8 6.20914 6.20914 8 4 8C1.79086 8 0 6.20914 0 4C0 1.79086 1.79086 0 4 0C6.20914 0 8 1.79086 8 4Z"
-      transform="translate(31.3335 34)"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false,
+      bag: []
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-export default Minicart;
+  componentDidMount() {
+    Axios.get('http://localhost:8080/bolsa')
+      .then(res => {
+        const bag = res.data;
+        this.setState({ bag })
+      })
+  }
+
+  handleClick = (event, item) => {
+    event.preventDefault()
+    const body = {
+      "id": item
+    }
+    Axios.delete('http://localhost:8080/bolsa', { data: body })
+    this.close()
+  }
+
+  show = dimmer => () => {
+    this.setState({ dimmer, open: true })
+    this.componentDidMount()
+  }
+  close = () => this.setState({ open: false })
+
+  render() {
+    const { open, dimmer } = this.state
+
+    let content;
+
+    if (this.state.bag.length === 0) {
+      content = <p>Sua bolsa está vazia</p>
+    } else {
+      content = _.times(this.state.bag.length, item => {
+        return <ProductDescription product={this.state.bag[item]} onClick={(e) => this.handleClick(e, this.state.bag[item].id)}></ProductDescription>
+      })
+    }
+
+    return (
+      <div>
+        <Button onClick={this.show('blurring')} inverted color="orange" icon="cart"></Button>
+
+        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+          <Modal.Header>Sua bolsa</Modal.Header>
+          <Modal.Content scrolling>
+            <Modal.Description>
+              <Item.Group centered>
+                {content}
+              </Item.Group>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="orange" onClick={this.close}>
+              Finalizar <Icon name='chevron right' />
+            </Button>
+          </Modal.Actions>
+        </Modal>
+      </div>
+    )
+  }
+}
+
+export default ModalExampleDimmer

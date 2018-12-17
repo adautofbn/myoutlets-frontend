@@ -3,7 +3,7 @@ import { Card, Image } from 'semantic-ui-react';
 import BuyButton from './BuyButton';
 import ProductPrice from './ProductPrice';
 
-const SearchBar = ({ product }) => (
+const ProductSummary = ({ product }) => (
     <Card>
         <Image centered size="medium" src={product.img} />
         <Card.Content>
@@ -14,9 +14,9 @@ const SearchBar = ({ product }) => (
             <ProductPrice price={product.price} />
         </Card.Content>
         <Card.Content extra>
-            <BuyButton />
+            <BuyButton product={product}/>
         </Card.Content>
     </Card>
 )
 
-export default SearchBar;
+export default ProductSummary;

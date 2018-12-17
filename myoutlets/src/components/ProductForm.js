@@ -44,7 +44,7 @@ class ProductForm extends Component {
             description: this.state.description
         };
 
-        axios.post("http://localhost:3000/produto/", { product });
+        axios.post("http://localhost:8080/produto/", product);
         this.props.close();
         window.location.reload();
     }
@@ -52,29 +52,38 @@ class ProductForm extends Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
-                <Form.Field>
+                <Form.Field required>
                     <label>Nome</label>
-                    <input placeholder="Nome do produto" name="name" onChange={this.nameChange} />
+                    <input required placeholder="Nome do Produto" name="name" onChange={this.nameChange} />
                 </Form.Field>
                 <Form.Field>
                     <label>Quantidade</label>
-                    <input placeholder="Quantidade do produto" name="quant" onChange={this.quantChange} />
+                    <input type="number" min="0" placeholder="Quantidade do Produto" name="quant" onChange={this.quantChange} />
                 </Form.Field>
-                <Form.Field>
+                <Form.Field required>
                     <label>Tipo</label>
-                    <input placeholder="Categoria do produto" name="type" onChange={this.typeChange} />
+                    <input required list="types" placeholder="Categoria do Produto" name="type" onChange={this.typeChange} />
+                    <datalist id="types">
+                        <option value="Camisa"></option>
+                        <option value="Calca"></option>
+                        <option value="Calcado"></option>
+                        <option value="Acessorio"></option>
+                        <option value="Short"></option>
+                        <option value="Saia"></option>
+                        <option value="Bermuda"></option>
+                    </datalist>
                 </Form.Field>
-                <Form.Field>
+                <Form.Field required>
                     <label>Preço</label>
-                    <input placeholder="Preço do produto" name="price" onChange={this.priceChange} />
+                    <input required type="number" min="0" placeholder="Valor (R$) do Produto" name="price" onChange={this.priceChange} />
                 </Form.Field>
                 <Form.Field>
                     <label>Imagem</label>
                     <input placeholder="URL da foto do produto" name="img" onChange={this.imgChange} />
                 </Form.Field>
-                <Form.Field>
+                <Form.Field required>
                     <label>Descrição</label>
-                    <input placeholder="Descrição do produto" name="description" onChange={this.descChange} />
+                    <input required placeholder="Descrição do produto" name="description" onChange={this.descChange} />
                 </Form.Field>
                 <Button.Group fluid>
                     <Button positive type="submit" content='Adicionar'></Button>
